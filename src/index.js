@@ -4,13 +4,16 @@ import LoginPage from './LoginPage';
 import MainPage from './MainPage';
 import './index.css';
 import {UserProvider, UserConsumer} from './UserContext';
+import {EmailProvider, EmailConsumer} from './EmailContext';
 
 
 const Root = () => (
   <UserProvider>
-    <UserConsumer>
-      {({currentUser}) => currentUser ? <MainPage /> : <LoginPage />}
-    </UserConsumer>
+    <EmailProvider>
+      <UserConsumer>
+        {({currentUser}) => currentUser ? <MainPage /> : <LoginPage />}
+      </UserConsumer>
+    </EmailProvider>
   </UserProvider>
 );
 
