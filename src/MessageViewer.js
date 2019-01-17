@@ -1,5 +1,4 @@
 import React from 'react';
-import { EmailConsumer } from './EmailContext';
 
 const MessageViewer = ({email, onResetEmail}) => (
   <div className="MessageViewer">
