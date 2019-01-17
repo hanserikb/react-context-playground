@@ -1,8 +1,8 @@
 import React from 'react';
-import UserContext from './UserContext';
+import UserConsumer from './UserContext';
 
 const MessageList = () => (
-  <UserContext>
+  <UserConsumer>
     {({currentUser}) => (
       <div className="MessageList">
         <div className="no-messages">
@@ -10,7 +10,7 @@ const MessageList = () => (
         </div>
       </div>
     )}
-  </UserContext>
+  </UserConsumer>
 );
 
 export default MessageList;
