@@ -5,7 +5,7 @@ import { EmailConsumer } from './EmailContext';
 import MessageViewer from './MessageViewer';
 const MainPage = () => (
   <EmailConsumer>
-    {({currentEmail, handleSelectEmail}) => (
+    {({currentEmail, handleSelectEmail}) => console.log(currentEmail) || (
       <main>
         <Header/>
         {currentEmail ? <MessageViewer onResetEmail={() => handleSelectEmail(null)} email={currentEmail}/> : <MessageList /> }
