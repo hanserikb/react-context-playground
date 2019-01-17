@@ -1,34 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 let UserContext;
 let { Provider, Consumer } = UserContext = React.createContext(); 
 
-class UserProvider extends React.Component {
-  state = {
-    currentUser: null
-  };
+const UserProvider = ({children}) => {
+  const [currentUser, setCurrentUser] = useState(null)
 
-  handleLogin = user => {
-    this.setState({ currentUser: user });
-  };
+  const handleLogin = user => setCurrentUser(user);
+  const handleLogout = () => setCurrentUser(null);
 
-  handleLogout = () => {
-    this.setState({ currentUser: null });
-  };
-
-  render() {
-    const { currentUser } = this.state;
-    const { handleLogin, handleLogout } = this;
-    return (
-      // Context providers takes a value prop that is
-      // available to consumers down the component tree
-      <Provider value={{
-        currentUser,
-        onLogout: handleLogout,
-        onLogin: handleLogin
-      }}>{this.props.children}</Provider>
-    )
-  }
+  return (
+    // Context providers takes a value prop that is
+    // available to consumers down the component tree
+    <Provider value={{
+      currentUser,
+      onLogout: handleLogout,
+      onLogin: handleLogin
+    }}>{children}</Provider>
+  )
+  
 }
 export { UserProvider, Consumer as UserConsumer, UserContext }
 export default UserContext;
