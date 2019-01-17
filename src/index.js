@@ -19,17 +19,32 @@ class Root extends React.Component {
   };
 
   render() {
-    return this.state.currentUser ? (
-      // Context providers takes a value prop that is 
+    const { currentUser } = this.state;
+    const { handleLogin, handleLogout } = this;
+    return (
+      // Context providers takes a value prop that is
       // available to consumers down the component tree
-      <UserContext.Provider value={this.state.currentUser}>
-        <MainPage
-          currentUser={this.state.currentUser}
-          onLogout={this.handleLogout}
-        />
-      </UserContext.Provider>
-    ) : (
-      <LoginPage onLogin={this.handleLogin} />
+      currentUser ? (
+        <UserContext.Provider
+          value={{
+            currentUser,
+            onLogout: handleLogout,
+            onLogin: handleLogin
+          }}
+        >
+          <MainPage />
+        </UserContext.Provider>
+      ) : (
+        <UserContext.Provider
+          value={{
+            currentUser,
+            onLogout: handleLogout,
+            onLogin: handleLogin
+          }}
+        >
+          <LoginPage onLogin={handleLogin}/>
+        </UserContext.Provider>
+      )
     );
   }
 }

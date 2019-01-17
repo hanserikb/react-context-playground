@@ -35,7 +35,7 @@ class UserMenu extends React.Component {
         <img
           className="UserAvatar"
           alt="User avatar"
-          src={this.props.currentUser.avatar}
+          src={this.props.avatar}
           onClick={this.toggleMenu}
           ref={this.avatarRef}
         />
