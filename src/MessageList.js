@@ -9,7 +9,7 @@ const MessageList = () => {
     <div className="MessageList">
       {loading ? (
         <div className="no-messages">
-          Your mailbox is empty, {currentUser.firstName}! 🎉
+          Loading..
         </div>
       ) : ''}
       {!emails.length ? (
@@ -19,7 +19,7 @@ const MessageList = () => {
       ) : (
         <ul>
           {emails.map(email => (
-            <Email id={email.id} email={email} onClick={() => handleSelectEmail(email)}></Email>
+            <Email key={email.id} id={email.id} email={email} onClick={() => handleSelectEmail(email)}></Email>
           ))}
         </ul>
       )}

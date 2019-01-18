@@ -6,7 +6,7 @@ class NotificationProvider extends React.Component {
   state = {
     messages: []
   };
-  
+
   addMessage = (message) => {
     this.setState(state => ({
       messages: [
