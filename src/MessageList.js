@@ -19,7 +19,7 @@ const MessageList = () => {
       ) : (
         <ul>
           {emails.map(email => (
-            <Email key={email.id} id={email.id} email={email} onClick={() => handleSelectEmail(email)}></Email>
+            <Email key={email.id} email={email} onClick={handleSelectEmail}></Email>
           ))}
         </ul>
       )}
@@ -27,10 +27,11 @@ const MessageList = () => {
   )
 };
 
-const Email = ({email, onClick}) => (
+const Email = React.memo(({email, onClick}) => (
   <li onClick={() => onClick(email)}>
   <div className="subject">{email.subject}</div>
   <div className="preview">{email.preview}</div>
   </li>
-)
+))
+
 export default MessageList;
