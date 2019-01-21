@@ -3,9 +3,13 @@ import React from 'react';
 const { Provider, Consumer } = React.createContext(); 
 
 class NotificationProvider extends React.Component {
-  state = {
-    messages: []
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      messages: [],
+      notify: this.addMessage
+    }
+  }
 
   addMessage = (message) => {
     this.setState(state => ({
@@ -28,10 +32,7 @@ class NotificationProvider extends React.Component {
 
   render() {
     return (
-      <Provider value={{
-        ...this.state,
-        notify: this.addMessage
-      }}>
+      <Provider value={this.state}>
         <div className="notification-wrapper">
           <ul>
             {this.state.messages.map(message => (

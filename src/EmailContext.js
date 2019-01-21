@@ -6,13 +6,16 @@ let EmailContext;
 const { Provider, Consumer } = EmailContext = React.createContext(); 
 
 class EmailProvider extends React.Component {
-  state = {
-    emails: [],
-    currentEmail: null,
-    error: null,
-    loading: false
-  };
-  
+  constructor(props) {
+    super(props)
+    this.state = {
+      emails: [],
+      currentEmail: null,
+      error: null,
+      loading: false,
+      handleSelectEmail: this.handleSelectEmail
+    };
+  }
   handleSelectEmail = (email) => {
     this.setState({
       currentEmail: email
@@ -39,7 +42,6 @@ class EmailProvider extends React.Component {
             this.setState(state => ({
               emails: state.emails.concat(emails)
             }));
-            console.log(this.props)
             this.props.notify(
               `${emails.length} more emails arrived`
             )
@@ -53,12 +55,8 @@ class EmailProvider extends React.Component {
   }
 
   render() {
-    const { handleSelectEmail } = this;
     return (
-      <Provider value={{
-        ...this.state,
-        handleSelectEmail: handleSelectEmail
-      }}>
+      <Provider value={this.state}>
         {this.props.children}
       </Provider>
     )
